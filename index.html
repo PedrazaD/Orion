@@ -2,42 +2,23 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para ti ❤️</title>
   <style>
-    body {
-      text-align: center;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #ffe6f0, #ffb3d1);
-      padding-top: 80px;
-      color: #d63384;
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-    }
-    button {
-      padding: 20px 40px;
-      font-size: 20px;
-      background: #ff4d94;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-top: 30px;
-    }
-    button:hover {
-      background: #e60073;
-    }
+    body {text-align:center; background:#ffe6f0; padding-top:100px; font-family:Arial;}
+    button {padding:20px 40px; font-size:20px; background:#ff4d94; color:white; border:none; border-radius:15px; cursor:pointer;}
   </style>
 </head>
 <body>
   <h1>Hola mi vida ❤️</h1>
-  <p>Te hice esta sorpresita con mucho amor...</p>
-  <p>Dale al botón y escucha 👇</p>
-  
-  <button onclick="playMusic
+  <p>Te hice esta sorpresita...</p>
+  <button onclick="playMusic()">Toca aquí para la sorpresa</button>
+
+  <audio id="musica" src="Quiero Caminar Contigo.mp3" loop></audio>
+
+  <script>
+    function playMusic() {
+      document.getElementById("musica").play();
+    }
+  </script>
+</body>
+</html>
