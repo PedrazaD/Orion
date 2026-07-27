@@ -2,23 +2,94 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para ti ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti ✨</title>
   <style>
-    body {text-align:center; background:#ffe6f0; padding-top:100px; font-family:Arial;}
-    button {padding:20px 40px; font-size:20px; background:#ff4d94; color:white; border:none; border-radius:15px; cursor:pointer;}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('https://i.imgur.com/8K6G9bB.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .caja {
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px #ff4d94;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 18px 35px;
+      font-size: 20px;
+      background: #ff4d94;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4d94;
+    }
+    button:hover {
+      background: #e60073;
+    }
+    #pagina2 {
+      display: none;
+      background: rgba(0,0,0,0.8);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      line-height: 1.8;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
-  <h1>Hola mi vida ❤️</h1>
-  <p>Te hice esta sorpresita...</p>
-  <button onclick="playMusic()">Toca aquí para la sorpresa</button>
 
+  <!-- PÁGINA 1 -->
+  <div id="pagina1" class="caja">
+    <h1>Quisieras saber más? ✨</h1>
+    <p>Tengo algo guardado para ti en las estrellas...</p>
+    <button onclick="mostrarCarta()">Sí, quiero saber ❤️</button>
+  </div>
+
+  <!-- PÁGINA 2 -->
+  <div id="pagina2" class="caja">
+    <h1>Para ti mi vida ❤️</h1>
+    <p>
+      Aquí va tu texto largo...<br><br>
+      Escribe todo lo que quieras decirle aquí. 
+      Puedes ponerle párrafos, lo que sientes, 
+      por qué esa canción, recuerdos, etc.<br><br>
+      Ejemplo: "Desde que te conocí supe que eras especial..."<br><br>
+      Gracias por existir.
+    </p>
+  </div>
+
+  <!-- LA CANCIÓN -->
   <audio id="musica" src="Quiero Caminar Contigo.mp3" loop></audio>
 
   <script>
-    function playMusic() {
+    function mostrarCarta() {
+      document.getElementById("pagina1").style.display = "none";
+      document.getElementById("pagina2").style.display = "block";
       document.getElementById("musica").play();
     }
   </script>
+
 </body>
 </html>
