@@ -71,8 +71,17 @@
     padding: 16px 45px; font-size: 1.2em; font-weight: 600;
     border-radius: 12px; cursor: pointer; letter-spacing: 2px;
     transition: all 0.4s ease; font-family: 'Georgia', serif;
+    margin: 8px;
   }
   .btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(198, 40, 40, 0.8); border-color: #ffd700; }
+
+  .btn-secundario {
+    background: transparent;
+    border: 2px solid #ffd700;
+    font-size: 1em;
+    padding: 12px 35px;
+  }
+  .btn-secundario:hover { background: rgba(255, 215, 0, 0.2); }
 
   /* PANTALLA 2: La frase con estrellas fugaces */
   #pantalla2 {
@@ -85,9 +94,9 @@
     align-items: center;
     padding: 20px;
     position: relative;
+    flex-direction: column;
   }
 
-  /* Estrellas fugaces reales */
   .shooting-star {
     position: absolute;
     height: 2px;
@@ -109,12 +118,51 @@
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
     animation: aparecer 2s ease;
     z-index: 10;
+    margin-bottom: 40px;
   }
   
   @keyframes aparecer {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
   }
+
+  /* PANTALLA 3: Acertijo */
+  #pantalla3 {
+    display: none;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .acertijo-box {
+    text-align: center;
+    z-index: 10;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    max-width: 650px;
+    animation: aparecer 2s ease;
+  }
+  
+  .acertijo-box h1 {
+    color: #ffd700;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+  }
+  
+  .acertijo-box p {
+    font-size: 1.4em;
+    line-height: 1.7;
+    font-style: normal;
+    color: #f0f0f0;
+  }
+
 </style>
 </head>
 <body>
@@ -139,7 +187,21 @@
       universo, es un placer<br>
       inmenso para mí compartir<br>
       este planeta y este tiempo<br>
-      contigo. 🤍🤎
+      contigo.
+    </div>
+    <button class="btn btn-secundario" onclick="mostrarAcertijo()">un acertijo</button>
+  </div>
+
+  <!-- PANTALLA 3 -->
+  <div id="pantalla3">
+    <div class="acertijo-box">
+      <h1>un acertijo</h1>
+      <p>
+        Hay hilos invisibles en la forma<br>
+        en que te cuido; un misterio tierno<br>
+        que pensé que tus ojos ya habían<br>
+        aprendido a leer...
+      </p>
     </div>
   </div>
 
@@ -181,10 +243,14 @@
     document.getElementById('pantalla1').style.display = 'none';
     document.getElementById('pantalla2').style.display = 'flex';
     
-    // Reproducir música
     const audio = document.getElementById('musica');
     audio.volume = 0.4;
     audio.play().catch(e => console.log("El navegador bloqueó el audio"));
+  }
+
+  function mostrarAcertijo() {
+    document.getElementById('pantalla2').style.display = 'none';
+    document.getElementById('pantalla3').style.display = 'flex';
   }
 </script>
 </body>
