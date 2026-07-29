@@ -131,7 +131,7 @@
   /* PANTALLA 3: Atardecer morado */
   #pantalla3 {
     display: none;
-    background-image: url('atardecer.jpg'); /* TU IMAGEN LOCAL */
+    background-image: url('atardecer.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -140,6 +140,7 @@
     align-items: center;
     padding: 20px;
     position: relative;
+    overflow: hidden;
   }
 
   .acertijo-box {
@@ -150,19 +151,37 @@
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 192, 203, 0.4); /* Borde rosadito */
+    border: 1px solid rgba(255, 192, 203, 0.4);
     max-width: 90%;
     width: 600px;
     animation: aparecer 2s ease;
-    box-shadow: 0 0 30px rgba(186, 104, 200, 0.3); /* Sombra morada */
+    box-shadow: 0 0 30px rgba(186, 104, 200, 0.3);
   }
   
   .acertijo-box p {
-    font-size: 1.3em;
+    font-size: 1.4em;
     line-height: 1.8;
     font-style: italic;
     color: #fff8f0;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+  }
+
+  /* PÉTALOS DE ROSA */
+  .petal {
+    position: absolute;
+    top: -50px;
+    width: 15px;
+    height: 20px;
+    border-radius: 0% 100% 0% 100%;
+    animation: petalFall linear infinite;
+    z-index: 5;
+    opacity: 0.8;
+  }
+
+  @keyframes petalFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
   }
 
   /* AJUSTES PARA CELULAR */
@@ -172,7 +191,7 @@
       background: rgba(0, 0, 0, 0.25);
     }
     .acertijo-box p {
-      font-size: 1.15em;
+      font-size: 1.2em;
     }
     .frase {
       font-size: 1.3em;
@@ -208,14 +227,14 @@
     <button class="btn btn-secundario" onclick="mostrarAcertijo()">Hay algo más...</button>
   </div>
 
-  <!-- PANTALLA 3 -->
+  <!-- PANTALLA 3 - TEXTO NUEVO -->
   <div id="pantalla3">
+    <div id="petalos-container"></div>
     <div class="acertijo-box">
       <p>
-        ¿Creías que tu silencio me iba a callar?<br>
-        Al contrario, me hizo buscar una forma<br>
-        más bonita de recordarte, a mi manera,<br>
-        lo mucho que me importas. 🌹
+        Podrás ignorar un chat, pero no el cuidado<br>
+        y la buena intención que siempre pongo<br>
+        en mis gestos.
       </p>
     </div>
   </div>
@@ -252,6 +271,24 @@
   }
   createShootingStars();
 
+  function createPetals() {
+    const container = document.getElementById('petalos-container');
+    const colors = ['#ff0000', '#ffeb3b', '#2196f3']; // Rojo, Amarillo, Azul
+    
+    setInterval(() => {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      container.appendChild(petal);
+      
+      setTimeout(() => {
+        petal.remove();
+      }, 12000);
+    }, 300);
+  }
+
   function abrirCarta() {
     document.getElementById('pantalla1').style.display = 'none';
     document.getElementById('pantalla2').style.display = 'flex';
@@ -264,6 +301,7 @@
   function mostrarAcertijo() {
     document.getElementById('pantalla2').style.display = 'none';
     document.getElementById('pantalla3').style.display = 'flex';
+    createPetals();
   }
 </script>
 </body>
