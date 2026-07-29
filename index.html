@@ -3,23 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienes una carta</title>
+<title>Para Karen</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    color: white;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Georgia', serif;
     height: 100vh;
     overflow: hidden;
+    transition: background 1.5s ease;
+  }
+
+  /* PANTALLA 1: Carta */
+  #pantalla1 {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: white;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
   }
 
-  /* Estrellas cayendo elegante */
   .stars {
     position: absolute;
     width: 100%;
@@ -43,12 +48,10 @@
     100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
   }
 
-  /* Sobre/carta */
   .container {
     text-align: center;
     z-index: 10;
     padding: 40px;
-    max-width: 90%;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     border-radius: 20px;
@@ -56,71 +59,97 @@
     box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
   }
 
-  .icono {
-    font-size: 4em;
-    margin-bottom: 20px;
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
+  .icono { font-size: 4em; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-  h1 {
-    font-size: 1.9em;
-    margin-bottom: 15px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: #ffd700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-  }
+  h1 { font-size: 1.9em; margin-bottom: 15px; color: #ffd700; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); letter-spacing: 1px; }
+  p { font-size: 1.2em; margin-bottom: 35px; color: #e8e8e8; font-style: italic; }
 
-  p {
-    font-size: 1.2em;
-    margin-bottom: 35px;
-    color: #e8e8e8;
-    font-style: italic;
-    opacity: 0.9;
-  }
-
-  /* Botón rojo elegante */
   .btn {
     background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
-    color: white;
-    border: 2px solid rgba(255, 215, 0, 0.4);
-    padding: 16px 45px;
-    font-size: 1.2em;
-    font-weight: 600;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(198, 40, 40, 0.5);
-    transition: all 0.4s ease;
-    letter-spacing: 2px;
-    font-family: 'Georgia', serif;
+    color: white; border: 2px solid rgba(255, 215, 0, 0.4);
+    padding: 16px 45px; font-size: 1.2em; font-weight: 600;
+    border-radius: 12px; cursor: pointer; letter-spacing: 2px;
+    transition: all 0.4s ease; font-family: 'Georgia', serif;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(198, 40, 40, 0.8); border-color: #ffd700; }
+
+  /* PANTALLA 2: La frase con estrellas fugaces */
+  #pantalla2 {
+    display: none;
+    background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Estrellas fugaces reales */
+  .shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), white, rgba(255,255,255,0));
+    animation: shoot 3s linear infinite;
   }
   
-  .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 35px rgba(198, 40, 40, 0.8);
-    border-color: #ffd700;
-    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  @keyframes shoot {
+    0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; width: 0; }
+    100% { transform: translateX(500px) translateY(500px) rotate(45deg); opacity: 0; width: 300px; }
+  }
+
+  .frase {
+    color: white;
+    font-size: 1.6em;
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.8;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    animation: aparecer 2s ease;
+    z-index: 10;
+  }
+  
+  @keyframes aparecer {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
   }
 </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  
-  <div class="container">
-    <div class="icono">💌</div>
-    <h1>Tienes una carta digital</h1>
-    <p><strong>Karen Rojas</strong></p>
-    <p>¿Quieres saber su contenido?</p>
-    <button class="btn" onclick="continuar()">ABRIR CARTA</button>
+
+  <!-- PANTALLA 1 -->
+  <div id="pantalla1">
+    <div class="stars" id="stars"></div>
+    <div class="container">
+      <div class="icono">💌</div>
+      <h1>Tienes una carta digital</h1>
+      <p><strong>Karen Rojas</strong></p>
+      <p>¿Quieres saber su contenido?</p>
+      <button class="btn" onclick="abrirCarta()">ABRIR CARTA</button>
+    </div>
   </div>
 
+  <!-- PANTALLA 2 -->
+  <div id="pantalla2">
+    <div class="frase">
+      Dada la inmensidad del<br>
+      tiempo y la inmensidad del<br>
+      universo, es un placer<br>
+      inmenso para mí compartir<br>
+      este planeta y este tiempo<br>
+      contigo. 🤍🤎
+    </div>
+  </div>
+
+  <!-- MÚSICA -->
+  <audio id="musica" loop>
+    <source src="Quiero Caminar Contigo.mp3" type="audio/mpeg">
+  </audio>
+
 <script>
-  // Crear estrellas doradas cayendo
+  // Estrellas de la pantalla 1
   function createStars() {
     const starsContainer = document.getElementById('stars');
     for(let i = 0; i < 60; i++) {
@@ -134,9 +163,28 @@
   }
   createStars();
 
-  function continuar() {
-    alert("Aquí va el contenido de tu carta 😉");
-    // window.location.href = "carta.html";
+  // Estrellas fugaces de la pantalla 2
+  function createShootingStars() {
+    const pantalla2 = document.getElementById('pantalla2');
+    for(let i = 0; i < 15; i++) {
+      const shooting = document.createElement('div');
+      shooting.className = 'shooting-star';
+      shooting.style.top = Math.random() * 100 + '%';
+      shooting.style.left = Math.random() * 100 + '%';
+      shooting.style.animationDelay = Math.random() * 5 + 's';
+      pantalla2.appendChild(shooting);
+    }
+  }
+  createShootingStars();
+
+  function abrirCarta() {
+    document.getElementById('pantalla1').style.display = 'none';
+    document.getElementById('pantalla2').style.display = 'flex';
+    
+    // Reproducir música
+    const audio = document.getElementById('musica');
+    audio.volume = 0.4;
+    audio.play().catch(e => console.log("El navegador bloqueó el audio"));
   }
 </script>
 </body>
