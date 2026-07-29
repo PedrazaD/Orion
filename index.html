@@ -3,165 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Ti ❤️</title>
+<title>Para ti</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-  html, body {
-    margin: 0; padding: 0;
-    min-height: 100dvh;
-    display: flex; justify-content: center; align-items: center;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    text-align: center;
-  }
-
-  /* FONDO GALAXIA IGUAL A TU FOTO */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  
   body {
-    background: linear-gradient(180deg, #020024 0%, #090979 30%, #8a2be2 70%, #c77dff 100%);
-  }
-  
-  /* CANVAS DE ESTRELLAS */
-  #cielo {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-  }
-  
-  .caja { 
-    z-index: 2; 
-    position: relative; 
-    width: 95%; 
-    max-width: 750px; 
-    padding: 20px; 
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #2d1b4e 100%);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
-  /* LETRA BRILLANTE */
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(35px, 8vw, 60px);
-    font-weight: 400;
-    color: #fff;
-    text-shadow: 0 0 10px #ff99ff, 0 0 20px #ff66cc, 0 0 35px #ff66cc;
-    margin: 0 0 50px 0;
-    white-space: nowrap;
-    display: flex; justify-content: center; align-items: center; gap: 18px;
+  /* Estrellas cayendo */
+  .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
   
-  .emoji { 
-    font-size: clamp(40px, 9vw, 55px); 
-    filter: drop-shadow(0 0 15px #ff66cc) drop-shadow(0 0 30px #ff99ff);
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: fall linear infinite;
+    box-shadow: 0 0 6px white;
+  }
+  
+  @keyframes fall {
+    0% { transform: translateY(-100px) translateX(0); opacity: 1; }
+    100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+  }
+
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    z-index: 10;
+    padding: 30px;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
     animation: glow 2s ease-in-out infinite alternate;
   }
-  @keyframes glow { from {filter: drop-shadow(0 0 10px #ff66cc);} to {filter: drop-shadow(0 0 30px #ff99ff);} }
-
-  button {
-    padding: 16px 50px;
-    font-size: clamp(18px, 4.5vw, 22px);
-    font-weight: bold;
-    background: linear-gradient(90deg, #ff8fa3, #ffb3c1);
-    color: white; border: none; border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 0 25px rgba(255, 143, 163, 0.9);
-    transition: all 0.3s;
+  
+  @keyframes glow {
+    from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    to { text-shadow: 0 0 30px rgba(255,192,203,0.8); }
   }
-  button:hover { transform: scale(1.08); }
 
-  #pagina2 { display: none; }
+  p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    color: #ffb6c1;
+    font-weight: 500;
+  }
+
+  /* Botón ROJO criminal */
+  .btn {
+    background: linear-gradient(135deg, #ff0040 0%, #d4002a 100%);
+    color: white;
+    border: none;
+    padding: 18px 50px;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255,0,64,0.6);
+    transition: all 0.3s ease;
+    animation: pulse 1.5s infinite;
+    letter-spacing: 1px;
+  }
+  
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255,0,64,0.9);
+    background: linear-gradient(135deg, #ff1a5a 0%, #ff0040 100%);
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
 </style>
 </head>
 <body>
-
-<canvas id="cielo"></canvas>
-
-<div class="caja" id="pagina1">
-  <!-- GIRASOL AL INICIO Y TULIPAN/ROSA AL FINAL -->
-  <h1>
-    <span class="emoji">🌻</span>
-    Tengo algo que decirte...
-    <span class="emoji">🌷</span>
-  </h1>
+  <div class="stars" id="stars"></div>
   
-  <button onclick="mostrarPagina2()">Continuar</button>
-</div>
-
-<div class="caja" id="pagina2">
-  <h1>Aquí va tu carta ❤️</h1>
-  <p>Escribe tu mensaje aquí...</p>
-  <audio id="musica" src="Quiero Caminar Contigo.mp3" loop></audio>
-</div>
+  <div class="container">
+    <h1>🌻 Sabía que ibas a darle click 🌹</h1>
+    <p>Ahora que ya caíste... ¿continúas?</p>
+    <button class="btn" onclick="continuar()">CONTINUAR</button>
+  </div>
 
 <script>
-  // ESTRELLAS REALES QUE SE MUEVEN
-  const canvas = document.getElementById('cielo');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let estrellas = [];
-  const numEstrellas = 200;
-
-  // Crear estrellas con diferentes tamaños y velocidades
-  for(let i = 0; i < numEstrellas; i++) {
-    estrellas.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.5, // 3 tamaños
-      speedX: (Math.random() - 0.5) * 0.2, // se mueven lento
-      speedY: (Math.random() - 0.5) * 0.2,
-      opacity: Math.random(),
-      twinkleSpeed: Math.random() * 0.02 + 0.01
-    });
+  // Crear estrellas cayendo
+  function createStars() {
+    const starsContainer = document.getElementById('stars');
+    for(let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      star.style.animationDelay = Math.random() * 5 + 's';
+      starsContainer.appendChild(star);
+    }
   }
+  createStars();
 
-  function dibujarEstrellas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    estrellas.forEach(estrella => {
-      // Mover estrella
-      estrella.x += estrella.speedX;
-      estrella.y += estrella.speedY;
-      
-      // Si se sale, que aparezca del otro lado
-      if(estrella.x < 0) estrella.x = canvas.width;
-      if(estrella.x > canvas.width) estrella.x = 0;
-      if(estrella.y < 0) estrella.y = canvas.height;
-      if(estrella.y > canvas.height) estrella.y = 0;
-      
-      // Efecto de titileo
-      estrella.opacity += estrella.twinkleSpeed;
-      if(estrella.opacity > 1 || estrella.opacity < 0.2) {
-        estrella.twinkleSpeed *= -1;
-      }
-      
-      // Dibujar estrella con brillo
-      ctx.beginPath();
-      ctx.arc(estrella.x, estrella.y, estrella.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${estrella.opacity})`;
-      ctx.shadowBlur = estrella.size * 3;
-      ctx.shadowColor = 'white';
-      ctx.fill();
-    });
-    
-    requestAnimationFrame(dibujarEstrellas);
-  }
-  
-  dibujarEstrellas();
-
-  // Ajustar al cambiar tamaño de pantalla
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-
-  function mostrarPagina2() {
-    document.getElementById('pagina1').style.display = 'none';
-    document.getElementById('pagina2').style.display = 'block';
-    document.getElementById('musica').play();
+  function continuar() {
+    alert("Aquí va tu siguiente mensaje secreto 😉");
+    // Aquí puedes redirigir: window.location.href = "pagina2.html";
   }
 </script>
-
 </body>
 </html>
