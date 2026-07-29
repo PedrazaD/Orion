@@ -80,6 +80,7 @@
     border: 2px solid #ffd700;
     font-size: 1em;
     padding: 12px 35px;
+    letter-spacing: 1px;
   }
   .btn-secundario:hover { background: rgba(255, 215, 0, 0.2); }
 
@@ -126,10 +127,12 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* PANTALLA 3: Acertijo */
+  /* PANTALLA 3: Mar con luna */
   #pantalla3 {
     display: none;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background-image: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=1920');
+    background-size: cover;
+    background-position: center;
     color: white;
     height: 100vh;
     justify-content: center;
@@ -142,25 +145,21 @@
     text-align: center;
     z-index: 10;
     padding: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     border: 1px solid rgba(255, 215, 0, 0.3);
     max-width: 650px;
     animation: aparecer 2s ease;
-  }
-  
-  .acertijo-box h1 {
-    color: #ffd700;
-    margin-bottom: 25px;
-    font-size: 1.8em;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
   }
   
   .acertijo-box p {
     font-size: 1.4em;
     line-height: 1.7;
-    font-style: normal;
+    font-style: italic;
     color: #f0f0f0;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
   }
 
 </style>
@@ -189,13 +188,12 @@
       este planeta y este tiempo<br>
       contigo.
     </div>
-    <button class="btn btn-secundario" onclick="mostrarAcertijo()">un acertijo</button>
+    <button class="btn btn-secundario" onclick="mostrarAcertijo()">Hay algo más...</button>
   </div>
 
   <!-- PANTALLA 3 -->
   <div id="pantalla3">
     <div class="acertijo-box">
-      <h1>un acertijo</h1>
       <p>
         Hay hilos invisibles en la forma<br>
         en que te cuido; un misterio tierno<br>
