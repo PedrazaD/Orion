@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti</title>
+<title>Tienes una carta</title>
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
-    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #2d1b4e 100%);
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Georgia', 'Times New Roman', serif;
     height: 100vh;
     overflow: hidden;
     display: flex;
@@ -19,7 +19,7 @@
     position: relative;
   }
 
-  /* Estrellas cayendo */
+  /* Estrellas cayendo elegante */
   .stars {
     position: absolute;
     width: 100%;
@@ -29,71 +29,82 @@
   
   .star {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
+    width: 3px;
+    height: 3px;
+    background: #ffd700;
     border-radius: 50%;
     animation: fall linear infinite;
-    box-shadow: 0 0 6px white;
+    box-shadow: 0 0 10px #ffd700;
   }
   
   @keyframes fall {
-    0% { transform: translateY(-100px) translateX(0); opacity: 1; }
-    100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
   }
 
-  /* Contenedor principal */
+  /* Sobre/carta */
   .container {
     text-align: center;
     z-index: 10;
-    padding: 30px;
+    padding: 40px;
     max-width: 90%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+  }
+
+  .icono {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
 
   h1 {
-    font-size: 2.2em;
+    font-size: 1.9em;
     margin-bottom: 15px;
-    text-shadow: 0 0 20px rgba(255,255,255,0.5);
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-  
-  @keyframes glow {
-    from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-    to { text-shadow: 0 0 30px rgba(255,192,203,0.8); }
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   }
 
   p {
-    font-size: 1.3em;
-    margin-bottom: 40px;
-    color: #ffb6c1;
-    font-weight: 500;
+    font-size: 1.2em;
+    margin-bottom: 35px;
+    color: #e8e8e8;
+    font-style: italic;
+    opacity: 0.9;
   }
 
-  /* Botón ROJO criminal */
+  /* Botón rojo elegante */
   .btn {
-    background: linear-gradient(135deg, #ff0040 0%, #d4002a 100%);
+    background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
     color: white;
-    border: none;
-    padding: 18px 50px;
-    font-size: 1.4em;
-    font-weight: bold;
-    border-radius: 50px;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    padding: 16px 45px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 0 25px rgba(255,0,64,0.6);
-    transition: all 0.3s ease;
-    animation: pulse 1.5s infinite;
-    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(198, 40, 40, 0.5);
+    transition: all 0.4s ease;
+    letter-spacing: 2px;
+    font-family: 'Georgia', serif;
   }
   
   .btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 40px rgba(255,0,64,0.9);
-    background: linear-gradient(135deg, #ff1a5a 0%, #ff0040 100%);
-  }
-  
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    transform: translateY(-3px);
+    box-shadow: 0 0 35px rgba(198, 40, 40, 0.8);
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
   }
 </style>
 </head>
@@ -101,29 +112,31 @@
   <div class="stars" id="stars"></div>
   
   <div class="container">
-    <h1>🌻 Sabía que ibas a darle click 🌹</h1>
-    <p>Ahora que ya caíste... ¿continúas?</p>
-    <button class="btn" onclick="continuar()">CONTINUAR</button>
+    <div class="icono">💌</div>
+    <h1>Tienes una carta digital</h1>
+    <p><strong>Karen Rojas</strong></p>
+    <p>¿Quieres saber su contenido?</p>
+    <button class="btn" onclick="continuar()">ABRIR CARTA</button>
   </div>
 
 <script>
-  // Crear estrellas cayendo
+  // Crear estrellas doradas cayendo
   function createStars() {
     const starsContainer = document.getElementById('stars');
-    for(let i = 0; i < 80; i++) {
+    for(let i = 0; i < 60; i++) {
       const star = document.createElement('div');
       star.className = 'star';
       star.style.left = Math.random() * 100 + '%';
-      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      star.style.animationDelay = Math.random() * 5 + 's';
+      star.style.animationDuration = (Math.random() * 4 + 3) + 's';
+      star.style.animationDelay = Math.random() * 6 + 's';
       starsContainer.appendChild(star);
     }
   }
   createStars();
 
   function continuar() {
-    alert("Aquí va tu siguiente mensaje secreto 😉");
-    // Aquí puedes redirigir: window.location.href = "pagina2.html";
+    alert("Aquí va el contenido de tu carta 😉");
+    // window.location.href = "carta.html";
   }
 </script>
 </body>
