@@ -106,7 +106,7 @@
   }
   
   @keyframes shoot {
-    0% { transform: transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; width: 0; }
+    0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; width: 0; }
     100% { transform: translateX(500px) translateY(500px) rotate(45deg); opacity: 0; width: 300px; }
   }
 
@@ -146,7 +146,7 @@
     text-align: center;
     z-index: 10;
     padding: 40px 30px;
-    background: rgba(0, 0, 0, 0.3); /* Más transparente para que se vean los morados */
+    background: rgba(0, 0, 0, 0.3); 
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 20px;
@@ -163,17 +163,6 @@
     font-style: italic;
     color: #fff8f0;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-  }
-
-  .flor {
-    font-size: 2em;
-    margin-top: 15px;
-    display: block;
-    animation: flotarFlor 3s ease-in-out infinite;
-  }
-  @keyframes flotarFlor {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
   }
 
   /* AJUSTES PARA CELULAR */
@@ -226,8 +215,7 @@
         ¿Creías que tu silencio me iba a callar?<br>
         Al contrario, me hizo buscar una forma<br>
         más bonita de recordarte, a mi manera,<br>
-        lo mucho que me importas.<br>
-        <span class="flor">🌸</span>
+        lo mucho que me importas. 🌹
       </p>
     </div>
   </div>
