@@ -56,6 +56,7 @@
     border-radius: 20px;
     border: 1px solid rgba(255, 215, 0, 0.3);
     box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+    margin: 20px;
   }
 
   .icono { font-size: 4em; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
@@ -105,7 +106,7 @@
   }
   
   @keyframes shoot {
-    0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; width: 0; }
+    0% { transform: transform: translateX(0) translateY(0) rotate(45deg); opacity: 1; width: 0; }
     100% { transform: translateX(500px) translateY(500px) rotate(45deg); opacity: 0; width: 300px; }
   }
 
@@ -119,6 +120,7 @@
     animation: aparecer 2s ease;
     z-index: 10;
     margin-bottom: 40px;
+    padding: 0 10px;
   }
   
   @keyframes aparecer {
@@ -126,10 +128,10 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* PANTALLA 3: Atardecer */
+  /* PANTALLA 3: Atardecer morado */
   #pantalla3 {
     display: none;
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920'); /* LA 1 */
+    background-image: url('atardecer.jpg'); /* TU IMAGEN LOCAL */
     background-size: cover;
     background-position: center;
     color: white;
@@ -143,23 +145,49 @@
   .acertijo-box {
     text-align: center;
     z-index: 10;
-    padding: 50px 40px;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    padding: 40px 30px;
+    background: rgba(0, 0, 0, 0.3); /* Más transparente para que se vean los morados */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 165, 0, 0.4);
-    max-width: 700px;
+    border: 1px solid rgba(255, 192, 203, 0.4); /* Borde rosadito */
+    max-width: 90%;
+    width: 600px;
     animation: aparecer 2s ease;
-    box-shadow: 0 0 40px rgba(255, 140, 0, 0.3);
+    box-shadow: 0 0 30px rgba(186, 104, 200, 0.3); /* Sombra morada */
   }
   
   .acertijo-box p {
-    font-size: 1.4em;
+    font-size: 1.3em;
     line-height: 1.8;
     font-style: italic;
     color: #fff8f0;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+  }
+
+  .flor {
+    font-size: 2em;
+    margin-top: 15px;
+    display: block;
+    animation: flotarFlor 3s ease-in-out infinite;
+  }
+  @keyframes flotarFlor {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  /* AJUSTES PARA CELULAR */
+  @media (max-width: 600px) {
+    .acertijo-box {
+      padding: 30px 20px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .acertijo-box p {
+      font-size: 1.15em;
+    }
+    .frase {
+      font-size: 1.3em;
+    }
   }
 
 </style>
@@ -198,7 +226,8 @@
         ¿Creías que tu silencio me iba a callar?<br>
         Al contrario, me hizo buscar una forma<br>
         más bonita de recordarte, a mi manera,<br>
-        lo mucho que me importas.
+        lo mucho que me importas.<br>
+        <span class="flor">🌸</span>
       </p>
     </div>
   </div>
@@ -209,7 +238,6 @@
   </audio>
 
 <script>
-  // Estrellas de la pantalla 1
   function createStars() {
     const starsContainer = document.getElementById('stars');
     for(let i = 0; i < 60; i++) {
@@ -223,7 +251,6 @@
   }
   createStars();
 
-  // Estrellas fugaces de la pantalla 2
   function createShootingStars() {
     const pantalla2 = document.getElementById('pantalla2');
     for(let i = 0; i < 15; i++) {
