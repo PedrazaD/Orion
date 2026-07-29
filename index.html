@@ -13,7 +13,6 @@
     overflow: hidden;
   }
 
-  /* PANTALLA 1: Carta */
   #pantalla1 {
     background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     color: white;
@@ -84,7 +83,6 @@
   }
   .btn-secundario:hover { background: rgba(255, 215, 0, 0.2); }
 
-  /* PANTALLA 2: La frase con estrellas fugaces */
   #pantalla2 {
     display: none;
     background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=1920');
@@ -128,10 +126,9 @@
     to { opacity: 1; transform: scale(1); }
   }
 
-  /* PANTALLA 3: Atardecer morado */
   #pantalla3 {
     display: none;
-    background-image: url('atardecer.jpg');
+    background-image: url('atardecer.jpg'); /* REVISAR QUE SE LLAME ASÍ */
     background-size: cover;
     background-position: center;
     color: white;
@@ -166,38 +163,22 @@
     text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
   }
 
-  /* PÉTALOS DE ROSA REALES */
+  /* NUEVOS PÉTALOS CON EMOJI */
   .petal {
     position: absolute;
     top: -50px;
-    width: 18px;
-    height: 22px;
-    background: #ff0000;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* forma de pétalo */
+    font-size: 24px; /* tamaño del emoji */
     animation: petalFall linear infinite;
     z-index: 5;
     opacity: 0.9;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* sombrita */
-  }
-
-  .petal::after { /* brillo del pétalo */
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 4px;
-    width: 5px;
-    height: 6px;
-    background: rgba(255,255,255,0.4);
-    border-radius: 50%;
   }
 
   @keyframes petalFall {
     0% { transform: translateY(0) rotate(0deg); opacity: 0; }
     10% { opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg) translateX(40px); opacity: 0; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(30px); opacity: 0; }
   }
 
-  /* AJUSTES PARA CELULAR */
   @media (max-width: 600px) {
     .acertijo-box {
       padding: 30px 20px;
@@ -215,7 +196,6 @@
 </head>
 <body>
 
-  <!-- PANTALLA 1 -->
   <div id="pantalla1">
     <div class="stars" id="stars"></div>
     <div class="container">
@@ -227,7 +207,6 @@
     </div>
   </div>
 
-  <!-- PANTALLA 2 -->
   <div id="pantalla2">
     <div class="frase">
       Dada la inmensidad del<br>
@@ -240,7 +219,6 @@
     <button class="btn btn-secundario" onclick="mostrarAcertijo()">Hay algo más...</button>
   </div>
 
-  <!-- PANTALLA 3 -->
   <div id="pantalla3">
     <div id="petalos-container"></div>
     <div class="acertijo-box">
@@ -252,7 +230,6 @@
     </div>
   </div>
 
-  <!-- MÚSICA -->
   <audio id="musica" loop>
     <source src="Quiero Caminar Contigo.mp3" type="audio/mpeg">
   </audio>
@@ -284,24 +261,24 @@
   }
   createShootingStars();
 
-  // PÉTALOS DE ROSA
+  // PÉTALOS CON EMOJIS 🌹
   function createPetals() {
     const container = document.getElementById('petalos-container');
-    const colors = ['#e91e63', '#ffc107', '#03a9f4']; // Rosa, Amarillo, Azul
+    const rosas = ['🌹', '🌹', '🌹']; // Todos rojos. Si quieres amarillo: 🌼 y azul: 💙
     
     setInterval(() => {
       const petal = document.createElement('div');
       petal.className = 'petal';
+      petal.innerText = rosas[Math.floor(Math.random() * rosas.length)];
       petal.style.left = Math.random() * 100 + '%';
-      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      petal.style.animationDuration = (Math.random() * 4 + 7) + 's'; // 7 a 11 seg
+      petal.style.animationDuration = (Math.random() * 4 + 7) + 's';
       petal.style.animationDelay = Math.random() * 2 + 's';
       container.appendChild(petal);
       
       setTimeout(() => {
         petal.remove();
       }, 12000);
-    }, 250); // cae 1 cada 0.25 seg
+    }, 250);
   }
 
   function abrirCarta() {
@@ -316,7 +293,7 @@
   function mostrarAcertijo() {
     document.getElementById('pantalla2').style.display = 'none';
     document.getElementById('pantalla3').style.display = 'flex';
-    createPetals(); // Activar pétalos
+    createPetals();
   }
 </script>
 </body>
