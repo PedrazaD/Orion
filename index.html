@@ -21,13 +21,15 @@
   p{font-size:1.2em;margin-bottom:15px;color:#e8e8e8;font-style:italic}
   .btn{background:linear-gradient(135deg,#c62828 0%,#8e0000 100%);color:white;border:2px solid rgba(255,215,0,0.4);padding:16px 45px;font-size:1.2em;font-weight:600;border-radius:12px;cursor:pointer;letter-spacing:2px;margin:8px}
   .btn-secundario{background:transparent;border:2px solid #ffd700;font-size:1em;padding:12px 35px}
-  #pantalla2,#pantalla3,#pantalla4{display:none;height:100dvh;justify-content:center;align-items:center;padding:20px;position:relative;flex-direction:column;overflow:hidden}
+  #pantalla2,#pantalla3,#pantalla4{height:100dvh;display:none;justify-content:center;align-items:center;padding:20px;position:relative;flex-direction:column;overflow:hidden}
   #pantalla2{background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=1920');background-size:cover;background-position:center}
   #pantalla3{background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('atardecer.jpg'),linear-gradient(135deg,#ff6e7f,#bfe9ff);background-size:cover;background-position:center;color:white}
   #pantalla4{background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920');background-size:cover;background-position:center;color:white}
+  #pantalla5{display:none;background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%);width:100%;min-height:100dvh;padding:30px 16px 100px 16px;position:relative;overflow-y:auto}
   .frase{color:white;font-size:1.6em;text-align:center;max-width:700px;line-height:1.8;text-shadow:2px 2px 8px rgba(0,0,0,0.8);margin-bottom:40px}
   .acertijo-box{text-align:center;z-index:10;padding:28px 20px;background:rgba(0,0,0,0.38);backdrop-filter:blur(6px);border-radius:20px;border:1px solid rgba(255,192,203,0.4);width:100%;max-width:600px;margin:0 auto}
   .acertijo-box p{font-size:1.08em;line-height:1.65;color:#fff8f0}
+  .acertijo-box .titulo-poema{color:#ffd700;font-size:1.15em;margin-bottom:16px;letter-spacing:2px;font-style:normal;font-weight:bold}
   .petal{position:absolute;top:-50px;font-size:22px;animation:petalFall linear infinite;z-index:5}
   @keyframes petalFall{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(360deg) translateX(30px);opacity:0}}
   .shooting-star{position:absolute;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0),white,rgba(255,255,255,0));animation:shoot 3s linear infinite}
@@ -39,23 +41,11 @@
 
   <div id="pantalla2"><div class="frase">Dada la inmensidad del<br>tiempo y la inmensidad del<br>universo, es un placer<br>inmenso para mí compartir<br>este planeta y este tiempo<br>contigo.</div><button class="btn btn-secundario" onclick="mostrarAcertijo()">Hay algo más...</button></div>
 
-  <div id="pantalla3"><div id="petalos-container"></div><div class="acertijo-box"><p>Podrás ignorar un chat, pero no el cuidado<br>y la buena intención que siempre pongo<br>en mis gestos.</p><br><br><button class="btn btn-secundario" onclick="mostrarFinal()">SIGUIENTE</button></div></div>
+  <div id="pantalla3"><div id="petalos-container"></div><div class="acertijo-box"><p>Podrás ignorar un chat, pero no el cuidado<br>y la buena intención que siempre pongo<br>en mis gestos.</p><br><br><button class="btn btn-secundario" onclick="mostrarRecuerdoMar()">SIGUIENTE</button></div></div>
 
-  <div id="pantalla4"><div id="petalos-container2"></div><div class="acertijo-box">
-    <p>
-      Como las olas del mar que no se cansan<br>
-      de abrazar la orilla, así vuelven<br>
-      mis pensamientos hacia ti.<br><br>
-      Hay abrazos y momentos que se quedan<br>
-      navegando en el alma, como ese<br>
-      del 2 de enero.<br><br>
-      Y aunque cambien las mareas,<br>
-      ese recuerdo sigue ahí,<br>
-      con la misma fuerza del primer día.
-    </p>
-    <br>
-    <p style="color:#ffd700; letter-spacing:2px; font-size:0.9em; font-style:normal; font-weight:bold;">TU FIEL ADMIRADOR</p>
-  </div></div>
+  <div id="pantalla4"><div id="petalos-container-mar"></div><div class="acertijo-box"><p>Como las olas del mar que no se cansan<br>de abrazar la orilla, así vuelven<br>mis pensamientos hacia ti.<br><br>Hay abrazos y momentos que se quedan<br>navegando en el alma, como ese<br>del 2 de enero.<br><br>Y aunque cambien las mareas,<br>ese recuerdo sigue ahí,<br>con la misma fuerza del primer día.</p><br><br><button class="btn btn-secundario" onclick="mostrarFinal()">Y lo último...</button></div></div>
+
+  <div id="pantalla5"><div id="petalos-container2"></div><div class="acertijo-box"><p class="titulo-poema">TU FIEL ADMIRADOR</p><p>No siempre sé cómo decirte<br>todo lo que despiertas en mí,<br>pero hay algo en tu forma de ser<br>que me hace quedarme, mirarte,<br>y valorar cada momento.<br><br>Soy ese que te observa en silencio,<br>el que guarda tu sonrisa como tesoro,<br>el que encuentra en tu presencia<br>un lugar donde todo está bien.<br><br>Me basta con estar cerca,<br>con ser parte de tus días,<br>aunque sea desde un rincón discreto,<br>porque hasta 5 minutos verte<br>son suficientes para causar<br>algo bonito dentro de mí.<br><br>Porque admirarte es un privilegio,<br>es aprenderte sin prisa,<br>es descubrir que lo simple contigo<br>se vuelve extraordinario.<br><br>Y aunque no lo diga todos los días,<br>quiero que sepas que aquí estoy,<br>siempre... siendo, en silencio,<br>tu más fiel admirador.</p></div></div>
 
   <audio id="musica" loop><source src="Quiero Caminar Contigo.mp3" type="audio/mpeg"></audio>
 
@@ -64,15 +54,14 @@
   createStars();
   function createShootingStars(){const p2=document.getElementById('pantalla2');for(let i=0;i<12;i++){const sh=document.createElement('div');sh.className='shooting-star';sh.style.top=Math.random()*100+'%';sh.style.left=Math.random()*100+'%';sh.style.animationDelay=Math.random()*5+'s';p2.appendChild(sh);}}
   createShootingStars();
-  function createPetals(){const container=document.getElementById('petalos-container');setInterval(()=>{const petal=document.createElement('div');petal.className='petal';petal.innerText='🌹';petal.style.left=Math.random()*100+'%';petal.style.animationDuration=(Math.random()*4+7)+'s';container.appendChild(petal);setTimeout(()=>petal.remove(),12000);},250);}
+  function createPetals(id,emoji){const container=document.getElementById(id);setInterval(()=>{const petal=document.createElement('div');petal.className='petal';petal.innerText=emoji;petal.style.left=Math.random()*100+'%';petal.style.animationDuration=(Math.random()*4+7)+'s';container.appendChild(petal);setTimeout(()=>petal.remove(),12000);},280);}
   function abrirCarta(){document.getElementById('pantalla1').style.display='none';document.getElementById('pantalla2').style.display='flex';document.getElementById('musica').volume=0.4;document.getElementById('musica').play().catch(()=>{});}
-  function mostrarAcertijo(){document.getElementById('pantalla2').style.display='none';document.getElementById('pantalla3').style.display='flex';createPetals();}
+  function mostrarAcertijo(){document.getElementById('pantalla2').style.display='none';document.getElementById('pantalla3').style.display='flex';createPetals('petalos-container','🌹');}
+  function mostrarRecuerdoMar(){document.getElementById('pantalla3').style.display='none';document.getElementById('pantalla4').style.display='flex';createPetals('petalos-container-mar','🌊');}
   function mostrarFinal(){
-    document.getElementById('pantalla3').style.display='none';
-    const p4=document.getElementById('pantalla4');
-    p4.style.display='flex';
-    const c2=document.getElementById('petalos-container2');
-    setInterval(()=>{const p=document.createElement('div');p.className='petal';p.innerText=['💙','🌊','✨'][Math.floor(Math.random()*3)];p.style.left=Math.random()*100+'%';p.style.animationDuration=(Math.random()*4+7)+'s';c2.appendChild(p);setTimeout(()=>p.remove(),12000);},350);
+    document.getElementById('pantalla4').style.display='none';
+    const p5=document.getElementById('pantalla5');p5.style.display='block';window.scrollTo(0,0);p5.scrollTop=0;
+    createPetals('petalos-container2','💖');
   }
 </script>
 </body>
